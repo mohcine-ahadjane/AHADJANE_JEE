@@ -14,6 +14,9 @@ public class MetierImpl implements IMetier {
         this.dao = dao;
     }
 
+    public MetierImpl() {
+    }
+
     @Override
     public double calcul() {
         double tmp=dao.getData();
