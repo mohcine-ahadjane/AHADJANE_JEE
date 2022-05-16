@@ -1,4 +1,4 @@
-package ma.enset.patientsmvc.security;
+package ma.enset.patientsmvc.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
