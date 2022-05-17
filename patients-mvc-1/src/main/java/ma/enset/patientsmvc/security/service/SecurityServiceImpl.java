@@ -37,9 +37,9 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public AppRole saveNewRole(String roleName, String description) {
         AppRole appRole=appRoleRepository.findByRoleName(roleName);
-        if(appRole!=null) throw new RuntimeException("Role "+"roleName"+" already exist");
+        if(appRole!=null) throw new RuntimeException("Role "+roleName+" already exist");
         appRole=new AppRole();
-        appRole.setRolName(roleName);
+        appRole.setRoleName(roleName);
         appRole.setDescription(description);
         AppRole savedAppRole=appRoleRepository.save(appRole);
         return savedAppRole;

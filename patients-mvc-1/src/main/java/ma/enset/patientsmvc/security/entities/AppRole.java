@@ -12,7 +12,7 @@ public class AppRole {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
     @Column(unique = true)
-    private String rolName;
+    private String roleName;
     private String description;
 
 }
