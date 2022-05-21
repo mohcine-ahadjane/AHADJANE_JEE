@@ -1,22 +1,20 @@
-package ma.enset.ecommerce.entities;
+package ma.enset.ecommerce.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.enset.ecommerce.entities.Category;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Product {
-    @Id
+public class ProductDTO {
     private String id;
     private String name;
     private double price;
     private double quantity;
-    @ManyToOne
-    private Category category;
+    private CategoryDTO category;
 }

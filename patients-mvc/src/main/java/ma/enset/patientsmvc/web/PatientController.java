@@ -45,7 +45,8 @@ public class PatientController {
     }
 
     @GetMapping("/patients")
-    @ResponseBublic List<Patient> patientList(){
+    @ResponseBody
+    public  List<Patient> patientList(){
         return patientRepository.findAll();
     }
 }

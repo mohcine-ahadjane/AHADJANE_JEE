@@ -1,6 +1,8 @@
 package ma.enset.ecommerce;
 
+import ma.enset.ecommerce.entities.Category;
 import ma.enset.ecommerce.entities.Product;
+import ma.enset.ecommerce.repositories.CategoryRepository;
 import ma.enset.ecommerce.repositories.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,11 +20,23 @@ public class ECommerceApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(ProductRepository productRepository){
+    public CommandLineRunner start(ProductRepository productRepository, CategoryRepository categoryRepository){
         return args -> {
-            Stream.of("Computer", "Printer", "smartPhone").forEach(name->{
-                productRepository.save(new Product(UUID.randomUUID().toString(), name, Math.random()*10000, Math.random()*100)
-                );
+            Stream.of("Computers", "Printers", "smart Phones").forEach(name->{
+                Category category=new Category();
+                category.setName(name);
+                categoryRepository.save(category);
+            });
+            categoryRepository.findAll().forEach(cat->{
+                for (int i=0 ; i<=5 ; i++){
+                    Product product=new Product();
+                    product.setId(UUID.randomUUID().toString());
+                    product.setPrice(100+Math.random()*10000);
+                    product.setQuantity(1+Math.random()*50);
+                    product.setName(cat.getName()+"-"+i);
+                    product.setCategory(cat);
+                    productRepository.save(product);
+                }
             });
         };
     }
