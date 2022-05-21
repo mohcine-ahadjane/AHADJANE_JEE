@@ -1,40 +1,40 @@
 package ma.enset.ecommerce.web;
 
+import ma.enset.ecommerce.dtos.ProductDTO;
 import ma.enset.ecommerce.entities.Product;
 import ma.enset.ecommerce.repositories.ProductRepository;
+import ma.enset.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class productRestController {
+
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
     @GetMapping( path = "/products")
-    public List<Product> productList(){
-        return productRepository.findAll();
+    public List<ProductDTO> productList(){
+        return productService.listProducts();
     }
     @GetMapping(path = "/products/{id}")
-    public Product getProduct(@PathVariable(name = "id") String id){
-        return productRepository.findById(id).get();
+    public ProductDTO getProduct(@PathVariable(name = "id") String id){
+        return productService.getProduit(id);
     }
     @PostMapping(path = "/products")
-    public Product save(@RequestBody Product product){
-        product.setId(UUID.randomUUID().toString());
-        return productRepository.save(product);
+    public ProductDTO save(@RequestBody ProductDTO productDTO){
+        return productService.save(productDTO);
     }
     @PutMapping("/products/{id}")
-    public Product update(@RequestBody Product product, @PathVariable String id){
-        product.setId(id);
-        return productRepository.save(product);
+    public ProductDTO update(@RequestBody ProductDTO productDTO, @PathVariable String id){
+        productDTO.setId(id);
+        return productService.save(productDTO);
     }
 
     @DeleteMapping("/products/{id}")
     public void deleteProduct(@PathVariable String id){
-       productRepository.deleteById(id);
+       productService.deleteProduct(id);
     }
 
 }

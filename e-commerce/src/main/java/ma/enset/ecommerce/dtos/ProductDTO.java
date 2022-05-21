@@ -15,6 +15,6 @@ public class ProductDTO {
     private String id;
     private String name;
     private double price;
-    private double quantity;
-    private CategoryDTO category;
+    //private double quantity;
+    private CategoryDTO categoryDTO;
 }
