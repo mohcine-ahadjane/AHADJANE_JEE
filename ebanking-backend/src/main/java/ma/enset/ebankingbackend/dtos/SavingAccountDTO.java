@@ -7,7 +7,7 @@ import ma.enset.ebankingbackend.enums.AccountStatus;
 import java.util.Date;
 
 @Data
-public class SavingAccountDTO {
+public class SavingAccountDTO extends  BankAccountDTO{
     private String id;
     private double balance;
     private Date createdAt;

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Data
-public class CustomerDTO {
+public class CustomerDTO extends BankAccountDTO{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
