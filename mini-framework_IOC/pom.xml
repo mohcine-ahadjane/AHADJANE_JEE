@@ -19,7 +19,6 @@
             <artifactId>core</artifactId>
             <version>12.47.0</version>
         </dependency>
-
     </dependencies>
 
 </project>
