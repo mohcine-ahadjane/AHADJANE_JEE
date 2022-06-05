@@ -1,6 +1,8 @@
 package ma.enset.ebankingbackend.web;
 
+import ma.enset.ebankingbackend.dtos.AccountOperationDTO;
 import ma.enset.ebankingbackend.dtos.BankAccountDTO;
+import ma.enset.ebankingbackend.entities.AccountOperation;
 import ma.enset.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.enset.ebankingbackend.service.BankAccountService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,4 +27,8 @@ public class BankAccountRestAPI {
         return bankAccountService.bankAccountList();
     }
 
+    @GetMapping("/accounts/{accountId}/operations")
+    public List<AccountOperationDTO> getHistory(@PathVariable String accountId){
+        return bankAccountService.accountHistory(accountId);
+    }
 }

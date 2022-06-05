@@ -1,9 +1,6 @@
 package ma.enset.ebankingbackend.service;
 
-import ma.enset.ebankingbackend.dtos.BankAccountDTO;
-import ma.enset.ebankingbackend.dtos.CurrentAccountDTO;
-import ma.enset.ebankingbackend.dtos.CustomerDTO;
-import ma.enset.ebankingbackend.dtos.SavingAccountDTO;
+import ma.enset.ebankingbackend.dtos.*;
 import ma.enset.ebankingbackend.entities.BankAccount;
 import ma.enset.ebankingbackend.entities.CurrentAccount;
 import ma.enset.ebankingbackend.entities.Customer;
@@ -31,4 +28,6 @@ public interface BankAccountService {
     CustomerDTO updateCustumer(CustomerDTO customerDTO);
 
     void deleteCustomer(Long customerId);
+
+    List<AccountOperationDTO> accountHistory(String accountId);
 }

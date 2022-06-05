@@ -33,7 +33,7 @@ public class EbankingBackendApplication {
         SpringApplication.run(EbankingBackendApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(BankAccountService bankAccountService){
         return args -> {
             Stream.of("Mohcine", "Hassan", "Sandra").forEach(name->{
@@ -46,28 +46,28 @@ public class EbankingBackendApplication {
                 try {
                     bankAccountService.saveCurrentBankAccount(Math.random()*9000, 9000, customer.getId());
                     bankAccountService.saveSavingBankAccount(Math.random()*9000, 9000, customer.getId());
-                    List<BankAccountDTO> bankAccounts = bankAccountService.bankAccountList();
-                    for (BankAccountDTO bankAccount:bankAccounts){
-                        for (int i=0;i<10;i++){
-                            String accountId;
-                            if(bankAccount instanceof SavingAccountDTO){
-                                accountId=((SavingAccountDTO) bankAccount).getId();
-                            }else
-                                accountId=((CurrentAccountDTO) bankAccount).getId();
-                            bankAccountService.credit(accountId, 10000+Math.random()*90000,"Credit" );
-                            bankAccountService.debit(accountId, 10000+Math.random()*120000,"Debit" );
-                        }
-                    }
 
                 } catch (CustomerNotFoundException e) {
                     e.printStackTrace();
-                } catch (BankAccountNotFoundException | BalanceNotSufficientException e) {
-                    e.printStackTrace();
                 }
             });
+            List<BankAccountDTO> bankAccounts = bankAccountService.bankAccountList();
+            for (BankAccountDTO bankAccount:bankAccounts){
+                for (int i=0;i<10;i++){
+                    String accountId;
+                    if(bankAccount instanceof SavingAccountDTO){
+                        accountId=((SavingAccountDTO) bankAccount).getId();
+                    }else
+                        accountId=((CurrentAccountDTO) bankAccount).getId();
+                    bankAccountService.credit(accountId, 1000+Math.random()*900,"Credit" );
+                    bankAccountService.debit(accountId, 10000+Math.random()*120000,"Debit" );
+                }
+            }
+
         };
+
     }
-    //@Bean
+    @Bean
     CommandLineRunner start(CustmerRepository custmerRepository,
                             BankAccountRepository bankAccountRepository,
                             AccountOperationRepository accountOperationRepository){
