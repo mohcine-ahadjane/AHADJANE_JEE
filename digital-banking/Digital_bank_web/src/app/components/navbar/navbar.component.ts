@@ -19,10 +19,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor( private securityService:SecurityService, private router:Router, private toastr: ToastrService) {
     this.userSub$ = this.securityService.userSubject.subscribe({
+      // @ts-ignore
       next: user=>{
         this.user = user;
+        // @ts-ignore
         this.userRole = user?.roles.find(e=>e.roleName=="ADMIN")!=undefined?"ADMIN":"USER";
       },
+      // @ts-ignore
       error: err=>{
 
       }

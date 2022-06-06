@@ -28,10 +28,14 @@ export class SecurityService {
       // @ts-ignore
       // @ts-ignore
       // @ts-ignore
+      // @ts-ignore
+      // @ts-ignore
+      // @ts-ignore
       this.http.post<any>(environment.backendUrl+"/login", {
         username,
         password
       }).subscribe({
+        // @ts-ignore
         next:res=>{
           this.access_token = res.access_token
           this.refresh_token = res.refresh_token
@@ -40,6 +44,7 @@ export class SecurityService {
           this.getUser()
           resolve(true)
         },
+        // @ts-ignore
         error: err=>{
           this.access_token = this.refresh_token = ""
           reject(false)
@@ -55,13 +60,16 @@ export class SecurityService {
     // @ts-ignore
     // @ts-ignore
     // @ts-ignore
+
     this.http.get<User>(environment.backendUrl+"/api/profile", { headers: {
       "Authorization": authorizationHeader
     } }).subscribe({
+      // @ts-ignore
       next:res=>{
         this.user = res;
         this.userSubject.next(res)
       },
+      // @ts-ignore
       error: err=>{
         console.error(err.message);
         this.refreshToken()

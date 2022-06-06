@@ -43,6 +43,7 @@ export class CustomersCardComponent implements OnInit, OnDestroy {
     });
 
     this.selectedCustomerSubject$ = this.selectedCustomerForm.valueChanges.subscribe({
+      // @ts-ignore
       next: value=>{
         this.selectedCustomerSubject.next( value.customerId )
       }
@@ -57,6 +58,7 @@ export class CustomersCardComponent implements OnInit, OnDestroy {
       this.handleSearchSubmit();
     }else
     this.customers = this.customerService.getCustomersPaginated(page, this.size ).pipe(
+      // @ts-ignore
       tap((e)=>{
         this.errorMessage="";
         this.nbrPages = e.totalPages;
@@ -64,6 +66,7 @@ export class CustomersCardComponent implements OnInit, OnDestroy {
         this.size = e.pageSize;
       }),
       catchError(
+        // @ts-ignore
         err=>{
           this.errorMessage = <string>err.message;
           return throwError( ()=> new Error(this.errorMessage));
@@ -78,12 +81,14 @@ export class CustomersCardComponent implements OnInit, OnDestroy {
     this.selectedCustomerForm?.reset();
     this.selectedCustomerForm?.setValue({ customerId: '' });
     this.customers = this.customerService.searchCustomersPaginated( kw, this.page, this.size ).pipe(
+      // @ts-ignore
       tap((e)=>{ this.errorMessage="";
       this.nbrPages = e.totalPages;
       this.page = e.currentPage+1;
       this.size = e.pageSize;
      }),
       catchError(
+        // @ts-ignore
         err=>{
           this.errorMessage = <string>err.message;
           return throwError( ()=> new Error(this.errorMessage));

@@ -24,6 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(req).pipe(
+      // @ts-ignore
       catchError((err) => {
         if ( err instanceof HttpErrorResponse && (err.status === 401 || err.status === 403) ) {
           console.log('refreshing token ...');
