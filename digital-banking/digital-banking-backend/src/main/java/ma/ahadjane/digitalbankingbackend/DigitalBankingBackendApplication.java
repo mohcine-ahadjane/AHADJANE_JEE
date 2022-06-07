@@ -50,7 +50,7 @@ public class DigitalBankingBackendApplication {
     @Bean
     CommandLineRunner commandLineRunner(BankAccountService bankAccountService, CustomerService customerService){
         return args -> {
-            Stream.of("AHADJANE Mohcine","TARHAT Ikram","BOURIG Rachid").forEach(name->{
+            Stream.of("AHADJANE Mohcine","TARHAT Ikram","BOURIG Rachid","Khawla", "Hassan", "Mohammmed", "Nohayla", "sandra", "Wassim", "Yassine", "Mouad","Morad","Asmae"  ).forEach(name->{
                 CustomerDTO customer=new CustomerDTO();
                 customer.setName(name);
                 customer.setEmail(name.replaceAll(" ", "")+"@gmail.com");
